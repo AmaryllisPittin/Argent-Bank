@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import './sass/mainStyle.scss'
+import './sass/mainStyle.scss';
+import './sass/merging.scss';
+import './sass/dimensions-and-spacing.scss';
+import 'font-awesome/css/font-awesome.min.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

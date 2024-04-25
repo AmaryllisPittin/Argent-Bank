@@ -1,0 +1,153 @@
+@mixin total-width {
+    width:100%;
+}
+
+/*********************************/
+
+.sign-in-button {
+    @include total-width;
+}
+
+/********************************/
+
+body {
+    margin: 0;
+    min-height: 100vh;
+}
+
+.main-nav {
+    padding: 5px 20px;
+}
+
+.main-nav-item {
+    margin-right: 0.5rem;
+}
+
+.main-nav-logo-image {
+    max-width: 100%;
+    width: 200px;
+  }
+
+  .hero {
+    height: 300px;
+  }
+
+  .hero-content {
+    top: 2rem;
+    width: 200px;
+    padding: 2rem;
+    margin: 0 auto;
+  }
+
+  .hero-content .subtitle {
+    margin: 0;
+  }
+
+  .hero-content .text {
+    margin-bottom: 0;
+  }
+
+  .feature-icon {
+    width: 100px;
+    border: 10px solid;
+    border-radius: 50%;
+    padding: 1rem;
+  }
+
+  .feature-item {
+    padding: 2.5rem;
+  }
+
+  .feature-item-title {
+    margin-bottom: 0.5rem;
+  }
+
+  .sign-in-button {
+    padding: 8px;
+    margin-top: 1rem;
+  }
+
+  .sign-in-content {
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 3rem;
+    padding: 2rem;
+  }
+
+  .input-remember label {
+    margin-left: 0.25rem;
+  }
+
+  .input-wrapper {
+    margin-bottom: 1rem;
+  }
+
+  .input-wrapper input {
+    padding: 5px;
+  }
+
+  .footer {
+    border-top: 2px solid #ccc;
+    padding: 2rem 0 1.5rem;
+  }
+
+  .footer-text {
+    margin: 0;
+    padding: 0;
+  }
+
+  .account {
+    border: 1px solid black;
+    width: 80%;
+    margin: 0 auto;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .account-amount,
+  .account-amount-description,
+  .account-title {
+    margin: 0;
+  }
+
+  .account-title {
+    padding: 0;
+  }
+
+  .account-content-wrapper {
+    width: 100%;
+  }
+
+  .edit-button {
+    padding: 10px;
+  }
+
+  .header {
+    margin-bottom: 2rem;
+  }
+
+  .transaction-button {
+    width: 100%;
+    padding: 8px;
+    margin-top: 1rem;
+  }
+
+  @media (min-width: 920px) {
+    .hero {
+      height: 400px;
+      background-position: 0% 33%;
+    }
+  
+    .hero-content {
+      top: 50px;
+      right: 50px;
+      width: 300px;
+      margin: 2rem;
+    }
+}
+
+@media (min-width: 720px) {
+    .transaction-button {
+      width: 200px;
+    }
+  }

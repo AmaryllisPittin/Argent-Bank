@@ -1,0 +1,101 @@
+/***********RESPONSIVE***************/
+$breakpoint-920px: 920px;
+
+/**********RULES*********************/
+
+@mixin display-flex-and-column {
+    display:flex;
+    flex-direction:column;
+}
+
+@mixin absolute-position {
+    position:absolute;
+}
+
+@mixin relative-position {
+    position:relative;
+}
+
+@mixin justify-between {
+    justify-content:space-between;
+}
+
+@mixin align-center {
+    align-items:center;
+}
+
+/**********************************/
+
+body,
+.features,
+.input-wrapper,
+.account {
+    @include display-flex-and-column;
+}
+
+.main-nav,
+.main-nav-logo,
+.input-remember,
+.footer {
+    display:flex;
+}
+
+.sr-only {
+    @include absolute-position;
+}
+
+.hero,
+.hero-content {
+    @include relative-position;
+}
+
+.main-nav,
+.footer,
+.account {
+    @include justify-between;
+}
+
+.main-nav,
+.main-nav-logo,
+.account {
+    @include align-center;
+}
+
+.main,
+.feature-item,
+.account-content-wrapper {
+    flex: 1;
+  }
+
+.sign-in-button {
+    display: block;
+  }
+
+.sign-in-content {
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 3rem;
+    padding: 2rem;
+  }
+
+  .account {
+    box-sizing: border-box;
+    text-align: left;
+  }
+
+  .transaction-button {
+    display: block;
+  }
+
+@media (min-width: $breakpoint-920px) {
+    .hero-content {
+        @include absolute-position;
+    }
+    .features,
+    .account {
+        flex-direction: row;
+    }
+    .account-content-wrapper.cta {
+        flex: 0;
+    }
+}
