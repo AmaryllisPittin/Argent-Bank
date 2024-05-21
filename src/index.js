@@ -7,11 +7,15 @@ import './sass/mainStyle.scss';
 import './sass/merging.scss';
 import './sass/dimensions-and-spacing.scss';
 import 'font-awesome/css/font-awesome.min.css';
+import store from './store';
+import { Provider } from 'react-redux';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 

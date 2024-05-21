@@ -13,7 +13,7 @@ const Header = () => {
             </NavLink>
             <div>
                 <NavLink to="/sign-in" className="main-nav-item">
-                    <FontAwesomeIcon icon={faUserCircle} />
+                    <FontAwesomeIcon icon={faUserCircle} className="main-nav-item__icon" />
                     Sign In
                 </NavLink>
             </div>

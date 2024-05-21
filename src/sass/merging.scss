@@ -26,7 +26,6 @@ $breakpoint-920px: 920px;
 
 /**********************************/
 
-body,
 .features,
 .input-wrapper,
 .account {
@@ -85,6 +84,10 @@ body,
 
   .transaction-button {
     display: block;
+  }
+
+  .footer {
+    justify-content: center;
   }
 
 @media (min-width: $breakpoint-920px) {

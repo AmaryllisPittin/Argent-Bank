@@ -1,9 +1,15 @@
 import React from "react";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
+import MainUser from "../components/MainUser";
 
 const User = () => {
     return (
-        <Header />
+        <div>
+            <Header />
+            <MainUser />
+            <Footer />
+        </div>
     )
 }
 
