@@ -7,7 +7,7 @@ import './sass/mainStyle.scss';
 import './sass/merging.scss';
 import './sass/dimensions-and-spacing.scss';
 import 'font-awesome/css/font-awesome.min.css';
-import store from './store';
+import store from './store/store';
 import { Provider } from 'react-redux';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

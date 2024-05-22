@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { checkUserProfile } from '../actions/userActions';
+import { checkUserProfile } from '../JS/userSlice';
 
 const MainSignIn = () => {
   const [email, setEmail] = useState('');
