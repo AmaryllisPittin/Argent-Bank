@@ -8,6 +8,11 @@ $breakpoint-920px: 920px;
     flex-direction:column;
 }
 
+@mixin display-flex-and-row {
+    display:flex;
+    flex-direction:row;
+}
+
 @mixin absolute-position {
     position:absolute;
 }
@@ -26,9 +31,15 @@ $breakpoint-920px: 920px;
 
 /**********************************/
 
+.form__label-input {
+    @include display-flex-and-row;
+}
+
 .features,
 .input-wrapper,
-.account {
+.account,
+.form,
+.form-container {
     @include display-flex-and-column;
 }
 
@@ -41,6 +52,10 @@ $breakpoint-920px: 920px;
 
 .sr-only {
     @include absolute-position;
+}
+
+.form__label-input {
+    align-items: center;
 }
 
 .hero,
@@ -56,7 +71,8 @@ $breakpoint-920px: 920px;
 
 .main-nav,
 .main-nav-logo,
-.account {
+.account,
+.form-container {
     @include align-center;
 }
 

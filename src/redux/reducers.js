@@ -1,39 +1,33 @@
-import { LOGIN, LOGOUT } from './actions';
+// reducers.js
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from './actionTypes';
 
 const initialState = {
-  users: [
-    {
-        username: `Tony Stark`,
-        email: `tony@stark.com`,
-        password: `password123`
-        
-    },
-    {
-        username: `Steve Rogers`,
-        email: `steve@rogers.com`,
-        password: `password456`
-    },
-  ],
   currentUser: null,
+  loading: false,
+  error: null,
 };
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
-    case LOGIN:
-      const user = state.users.find(
-        user => user.username === action.payload.username && user.password === action.payload.password
-      );
-      if (user) {
-        return {
-          ...state,
-          currentUser: user,
-        };
-      } else {
-        return {
-          ...state,
-          currentUser: null,
-        };
-      }
+    case LOGIN_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        currentUser: action.payload,
+        loading: false,
+        error: null,
+      };
+    case LOGIN_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     case LOGOUT:
       return {
         ...state,
@@ -45,6 +39,3 @@ function rootReducer(state = initialState, action) {
 }
 
 export default rootReducer;
-
-
-

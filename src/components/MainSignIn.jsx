@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
@@ -7,18 +7,22 @@ import { login } from '../redux/actions';
 
 const MainSignIn = () => {
   const [email, setEmail] = useState('');
-  //const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const loading = useSelector(state => state.loading);
+  const error = useSelector(state => state.error);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (email === '' || password === '') {
-      setError('Veuillez remplir les deux champs pour vous connecter');
+      alert('Veuillez remplir les deux champs pour vous connecter');
     } else {
-      dispatch(login(email, password));
-      navigate('/user');
+      dispatch(login(email, password)).then(() => {
+        if (!error) {
+          navigate('/user');
+        }
+      });
     }
   };
 
@@ -29,9 +33,9 @@ const MainSignIn = () => {
         <h1>Sign In</h1>
         <form onSubmit={handleSubmit}>
           <div className="input-wrapper">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username">Email</label>
             <input
-              type="text"
+              type="email"
               id="username"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -50,7 +54,9 @@ const MainSignIn = () => {
             <input type="checkbox" id="remember-me" />
             <label htmlFor="remember-me">Remember me</label>
           </div>
-          <button type="submit" onClick={handleSubmit} className="sign-in-button">Sign In</button>
+          <button type="submit" className="sign-in-button" disabled={loading}>
+            {loading ? 'Signing in...' : 'Sign In'}
+          </button>
           {error && <p style={{ color: 'red' }}>{error}</p>}
         </form>
       </section>
@@ -59,3 +65,4 @@ const MainSignIn = () => {
 };
 
 export default MainSignIn;
+

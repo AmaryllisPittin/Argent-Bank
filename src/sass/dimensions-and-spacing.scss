@@ -136,6 +136,21 @@ body {
     margin-top: 1rem;
   }
 
+  .form__label-input {
+    margin-bottom:15px;
+  }
+
+  .label {
+    margin-right:10px;
+  }
+
+  input {
+    border: solid 1px grey;
+    border-radius: 5px;
+    height:25px;
+    width:230px;
+  }
+
   @media (min-width: 920px) {
     .hero {
       height: 400px;

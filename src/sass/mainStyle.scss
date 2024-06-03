@@ -10,13 +10,13 @@ $third-color: #00bc77;
 }
 
 .sign-in-content,
-.account,
-.edit-button {
+.account {
   background-color: $main-color;
 }
 
 .sign-in-button,
-.transaction-button {
+.transaction-button,
+.edit-button {
   background-color: $third-color;
 }
 
