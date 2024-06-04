@@ -16,8 +16,13 @@ $third-color: #00bc77;
 
 .sign-in-button,
 .transaction-button,
-.edit-button {
+.edit-button,
+.form-button {
   background-color: $third-color;
+}
+
+.special-style {
+  background-color: $second-color;
 }
 
 .bg-dark {
@@ -29,7 +34,12 @@ $third-color: #00bc77;
 .sign-in-button,
 .edit-button,
 .header,
-.transaction-button {
+.transaction-button,
+.form-button,
+.special-style .account-title,
+.special-style .account-amount,
+.special-style .account-amount-description,
+.fa-chevron-right {
   color: $main-color;
 }
 
@@ -140,6 +150,10 @@ html {
 .transaction-button {
   font-size: 1.1rem;
   font-weight: bold;
+}
+
+.fa-chevron-right {
+  font-size:70px;
 }
 
 /**********************************************/

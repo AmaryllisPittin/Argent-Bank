@@ -144,11 +144,24 @@ body {
     margin-right:10px;
   }
 
-  input {
+  .form-button {
+    border:none;
+    border-radius: 5px;
+    width:200px;
+    height:50px;
+    margin-left:7px;
+    margin-right:7px;
+  }
+
+  .input {
     border: solid 1px grey;
     border-radius: 5px;
     height:25px;
     width:230px;
+  }
+
+  .form-container {
+    margin-bottom:50px;
   }
 
   @media (min-width: 920px) {

@@ -31,7 +31,8 @@ $breakpoint-920px: 920px;
 
 /**********************************/
 
-.form__label-input {
+.form__label-input,
+.form-button-container {
     @include display-flex-and-row;
 }
 
