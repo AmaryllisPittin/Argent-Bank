@@ -1,4 +1,3 @@
-// reducers.js
 import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from './actionTypes';
 
 const initialState = {
@@ -16,6 +15,7 @@ function rootReducer(state = initialState, action) {
         error: null,
       };
     case LOGIN_SUCCESS:
+      console.log('Login Success Payload:', action.payload);
       return {
         ...state,
         currentUser: action.payload,
@@ -39,3 +39,4 @@ function rootReducer(state = initialState, action) {
 }
 
 export default rootReducer;
+

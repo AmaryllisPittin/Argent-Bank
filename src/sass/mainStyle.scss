@@ -48,7 +48,8 @@ html,
   color: $second-color;
 }
 
-.main-nav a.router-link-exact-active {
+.main-nav a.router-link-exact-active,
+.green-icon {
   color: #42b983;
 }
 

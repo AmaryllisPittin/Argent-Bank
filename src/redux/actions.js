@@ -1,4 +1,3 @@
-// actions.js
 import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from './actionTypes';
 
 export const loginRequest = () => ({
@@ -32,10 +31,14 @@ export const login = (email, password) => {
       });
 
       const data = await response.json();
+      console.log('Response Data:', data);
 
       if (response.ok) {
-        dispatch(loginSuccess(data.user));
-        localStorage.setItem('token', data.token);
+        const user = data.body; 
+        dispatch(loginSuccess(user));
+        localStorage.setItem('token', data.body.token);
+
+        
       } else {
         dispatch(loginFailure(data.message));
       }
