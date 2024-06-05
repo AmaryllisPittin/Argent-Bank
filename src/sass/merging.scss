@@ -36,6 +36,10 @@ $breakpoint-920px: 920px;
     @include display-flex-and-row;
 }
 
+.form-button-container {
+    justify-content: center;
+}
+
 .features,
 .input-wrapper,
 .account,
@@ -77,10 +81,19 @@ $breakpoint-920px: 920px;
     @include align-center;
 }
 
+.main-user {
+    display:block;
+}
+
 .main,
+.main-user,
 .feature-item,
 .account-content-wrapper {
     flex: 1;
+  }
+
+  .main {
+    display:flex;
   }
 
 .sign-in-button {

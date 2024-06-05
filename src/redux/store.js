@@ -1,5 +1,5 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { thunk } from 'redux-thunk'; // Utilisation de l'importation nommée
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { thunk } from 'redux-thunk';
 import rootReducer from './reducers';
 
 const store = configureStore({

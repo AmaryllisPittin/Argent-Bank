@@ -9,7 +9,7 @@ const MainUser = () => {
     };
 
     return (
-        <main className="main bg-dark">
+        <main className="main-user bg-dark">
             <div className="header">
                 <h1>Welcome back<br />Tony Jarvis!</h1>
                 <button className="edit-button" onClick={handleEditClick}>Edit Name</button>
