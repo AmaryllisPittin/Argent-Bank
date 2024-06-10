@@ -1,12 +1,15 @@
 import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from './actionTypes';
 
 const initialState = {
-  currentUser: null,
+  success: false,
+  firstName: '', 
+  lastName: '',
+  token: '',
   loading: false,
   error: null,
 };
 
-function rootReducer(state = initialState, action) {
+const loginReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_REQUEST:
       return {
@@ -16,27 +19,27 @@ function rootReducer(state = initialState, action) {
       };
     case LOGIN_SUCCESS:
       console.log('Login Success Payload:', action.payload);
+      const { token } = action.payload.body;
+      localStorage.setItem('token', token);
       return {
         ...state,
-        currentUser: action.payload,
+        success: true,
         loading: false,
         error: null,
+        token,
       };
     case LOGIN_FAILURE:
       return {
         ...state,
+        success: false,
         loading: false,
         error: action.payload,
       };
     case LOGOUT:
-      return {
-        ...state,
-        currentUser: null,
-      };
+      return initialState;
     default:
       return state;
   }
-}
+};
 
-export default rootReducer;
-
+export default loginReducer;

@@ -1,5 +1,10 @@
-// actionTypes.js
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGOUT = 'LOGOUT';
+
+export const PROFILE_SUCCESS = 'PROFILE_SUCCESS'
+export const PROFILE_FAIL = 'PROFILE_FAIL'
+export const PROFILE_RESET = 'PROFILE_RESET'
+export const PROFILE_UPDATE = 'PROFILE_UPDATE'
+export const PROFILE_UPDATE_FAIL = 'PROFILE_UPDATE_FAIL'

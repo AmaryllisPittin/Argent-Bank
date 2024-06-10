@@ -1,7 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
-import store from './redux/store'; // Assurez-vous que l'importation est correcte
+import store from './redux/store';
 import './sass/mainStyle.scss';
 import './sass/merging.scss';
 import './sass/dimensions-and-spacing.scss';

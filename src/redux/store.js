@@ -1,6 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { thunk } from 'redux-thunk';
-import rootReducer from './reducers';
+import loginReducer from './loginReducer';
+import profileReducer from './profileReducer';
+
+const rootReducer = combineReducers({
+  userLogin: loginReducer,
+  userProfile: profileReducer,
+});
 
 const store = configureStore({
   reducer: rootReducer,
@@ -8,6 +14,7 @@ const store = configureStore({
 });
 
 export default store;
+
 
 
 
