@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle, faCog } from '@fortawesome/free-solid-svg-icons';
 import { NavLink, useNavigate } from "react-router-dom";
@@ -8,9 +8,13 @@ import Logo from '../img/argentBankLogo.png';
 
 const Header = () => {
     const dispatch = useDispatch();
-    const initialState = useSelector(state => state.initialState);
+    const userProfile = useSelector(state => state.userProfile);
     const navigate = useNavigate();
     const [showConfirmation, setShowConfirmation] = useState(false);
+
+    useEffect(() => {
+        console.log(userProfile.userName);
+    }, [userProfile]);
 
     const handleLogout = () => {
         setShowConfirmation(true);
@@ -24,7 +28,7 @@ const Header = () => {
 
     return (
         <nav className="main-nav">
-            {initialState ? (
+            {userProfile.success ? (
                 <>
                     <NavLink to="/" className="main-nav-logo">
                         <img
@@ -35,10 +39,10 @@ const Header = () => {
                         <h1 className="sr-only">Argent Bank</h1>
                     </NavLink>
                     <div>
-                        <span className="main-nav-item">
-                            <FontAwesomeIcon icon={faUserCircle} className="main-nav-item__icon green-icon" />
-                            {initialState.name}
-                        </span>
+                    <span className={`main-nav-item ${userProfile.userName ? 'custom-class' : ''}`}>
+                        {userProfile.userName}
+                        <FontAwesomeIcon icon={faUserCircle} className="main-nav-item__icon green-icon" />
+                    </span>
                         <NavLink to="/settings" className="main-nav-item">
                             <FontAwesomeIcon icon={faCog} className="main-nav-item__icon green-icon" />
                         </NavLink>
@@ -80,4 +84,5 @@ const Header = () => {
 };
 
 export default Header;
+
 
