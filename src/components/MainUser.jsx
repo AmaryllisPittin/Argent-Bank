@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { userProfile } from '../redux/actions';
 import AccountSection from "./AccountSection";
 
 const MainUser = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            dispatch(userProfile(token));
+        }
+    }, [dispatch]);
+
     const { firstName = '', lastName = '' } = useSelector((state) => state.userProfile);
 
     const handleEditClick = () => {
@@ -28,5 +38,7 @@ const MainUser = () => {
 };
 
 export default MainUser;
+
+
 
 

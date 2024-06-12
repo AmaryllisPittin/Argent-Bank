@@ -40,7 +40,6 @@ export const login = (email, password) => {
       });
 
       const data = await response.json();
-      console.log('Données de réponse :', data);
 
       if (response.ok) {
         dispatch(loginSuccess(data));
@@ -63,7 +62,6 @@ export const userProfile = (token) => async (dispatch) => {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ token }),
     });
 
     const data = await response.json();
@@ -72,7 +70,7 @@ export const userProfile = (token) => async (dispatch) => {
       throw new Error(data.message || 'Échec de la récupération du profil');
     }
 
-    dispatch({ type: PROFILE_SUCCESS, payload: data.body });
+    dispatch({ type: PROFILE_SUCCESS, payload: data });
   } catch (error) {
     dispatch(handleError(PROFILE_FAIL, error));
   }
