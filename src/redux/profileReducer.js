@@ -1,15 +1,15 @@
-import { PROFILE_SUCCESS, PROFILE_FAIL, PROFILE_RESET, PROFILE_UPDATE, PROFILE_UPDATE_FAIL } from './actionTypes';
+import { PROFILE_SUCCESS, PROFILE_FAIL, PROFILE_RESET, PROFILE_UPDATE, PROFILE_UPDATE_FAIL, LOGOUT } from './actionTypes';
 
 const initialState = { success: false, firstName: '', lastName: '', userName: '', loading: false, error: null };
 
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
-
     case PROFILE_SUCCESS:
+      console.log('Profile Success:', action.payload);
       const { firstName, lastName, userName } = action.payload.body;
       return { ...state, success: true, firstName, lastName, userName, loading: false, error: null };
-
     case PROFILE_UPDATE:
+      console.log('Profile Update:', action.payload);
       return {
         ...state,
         success: true,
@@ -17,19 +17,19 @@ const profileReducer = (state = initialState, action) => {
         lastName: action.payload.body.lastName || state.lastName,
         userName: action.payload.body.userName || state.userName,
       };
-
     case PROFILE_UPDATE_FAIL:
       return { ...state, error: action.payload, loading: false };
-
     case PROFILE_FAIL:
       return { ...state, error: action.payload, loading: false };
-
     case PROFILE_RESET:
       return { ...initialState };
-
+    case LOGOUT:
+      console.log('Profile reset on logout.');
+      return initialState;
     default:
       return state;
   }
 };
 
 export default profileReducer;
+

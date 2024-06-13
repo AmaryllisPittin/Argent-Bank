@@ -9,66 +9,58 @@ import Logo from '../img/argentBankLogo.png';
 const Header = () => {
     const dispatch = useDispatch();
     const userProfile = useSelector(state => state.userProfile);
+    const userLogin = useSelector(state => state.userLogin);
     const navigate = useNavigate();
     const [showConfirmation, setShowConfirmation] = useState(false);
 
     useEffect(() => {
-        console.log(userProfile.userName);
-    }, [userProfile]);
+        console.log('User Profile State:', userProfile);
+        console.log('User Login State:', userLogin);
+    }, [userProfile, userLogin]);
 
     const handleLogout = () => {
         setShowConfirmation(true);
     };
 
     const confirmLogout = () => {
+        console.log('Logging out...');
         dispatch(logout());
         localStorage.removeItem('token');
+        setShowConfirmation(false);
         navigate('/');
     };
 
     return (
         <nav className="main-nav">
+            <NavLink to="/" className="main-nav-logo">
+                <img
+                    className="main-nav-logo-image"
+                    src={Logo}
+                    alt="Argent Bank Logo"
+                />
+                <h1 className="sr-only">Argent Bank</h1>
+            </NavLink>
             {userProfile.success ? (
-                <>
-                    <NavLink to="/" className="main-nav-logo">
-                        <img
-                            className="main-nav-logo-image"
-                            src={Logo}
-                            alt="Argent Bank Logo"
-                        />
-                        <h1 className="sr-only">Argent Bank</h1>
-                    </NavLink>
-                    <div>
+                <div>
                     <span className={`main-nav-item ${userProfile.userName ? 'custom-class' : ''}`}>
                         {userProfile.userName}
                         <FontAwesomeIcon icon={faUserCircle} className="main-nav-item__icon green-icon" />
                     </span>
-                        <NavLink to="/settings" className="main-nav-item">
-                            <FontAwesomeIcon icon={faCog} className="main-nav-item__icon green-icon" />
-                        </NavLink>
-                        <button onClick={handleLogout} className="main-nav-item">
-                            <FontAwesomeIcon icon={faUserCircle} className="main-nav-item__icon" />
-                            Sign Out
-                        </button>
-                    </div>
-                </>
-            ) : (
-                <>
-                    <NavLink to="/" className="main-nav-logo">
-                        <img
-                            className="main-nav-logo-image"
-                            src={Logo}
-                            alt="Argent Bank Logo"
-                        />
-                        <h1 className="sr-only">Argent Bank</h1>
+                    <NavLink to="/settings" className="main-nav-item">
+                        <FontAwesomeIcon icon={faCog} className="main-nav-item__icon green-icon" />
                     </NavLink>
-                    <div>
-                        <NavLink to="/sign-in" className="main-nav-item">
-                            <FontAwesomeIcon icon={faUserCircle} className="main-nav-item__icon" />
-                            Sign In
-                        </NavLink>
-                    </div>
-                </>
+                    <button onClick={handleLogout} className="main-nav-item">
+                        <FontAwesomeIcon icon={faUserCircle} className="main-nav-item__icon" />
+                        Sign Out
+                    </button>
+                </div>
+            ) : (
+                <div>
+                    <NavLink to="/sign-in" className="main-nav-item">
+                        <FontAwesomeIcon icon={faUserCircle} className="main-nav-item__icon" />
+                        Sign In
+                    </NavLink>
+                </div>
             )}
             {showConfirmation && (
                 <div className="confirmation-dialog">
@@ -84,5 +76,4 @@ const Header = () => {
 };
 
 export default Header;
-
 

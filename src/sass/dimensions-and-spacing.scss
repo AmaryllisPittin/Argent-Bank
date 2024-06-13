@@ -128,6 +128,9 @@ body {
 
   .header {
     margin-bottom: 2rem;
+    &__h1 {
+      padding-top:50px;
+    }
   }
 
   .transaction-button {

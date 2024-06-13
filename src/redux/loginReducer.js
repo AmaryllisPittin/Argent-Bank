@@ -4,6 +4,7 @@ const initialState = {
   success: false,
   firstName: '', 
   lastName: '',
+  userName: '',
   token: '',
   loading: false,
   error: null,
@@ -34,8 +35,10 @@ const loginReducer = (state = initialState, action) => {
         success: false,
         loading: false,
         error: action.payload,
+        userName: action.payload.userName,
       };
     case LOGOUT:
+      console.log('User logged out.');
       return initialState;
     default:
       return state;

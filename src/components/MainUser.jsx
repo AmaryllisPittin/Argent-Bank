@@ -26,7 +26,7 @@ const MainUser = () => {
     return (
         <main className="main-user bg-dark">
             <div className="header">
-                <h1>{welcomeMessage}</h1>
+                <h1 className="header__h1">{welcomeMessage}</h1>
                 <button className="edit-button" onClick={handleEditClick}>Edit Name</button>
             </div>
             <h2 className="sr-only">Accounts</h2>
