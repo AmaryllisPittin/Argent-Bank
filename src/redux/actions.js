@@ -93,7 +93,6 @@ export const updateProfile = (token, newFirstName, newLastName, newUsername) => 
       throw new Error(data.message || 'Échec de la mise à jour du profil');
     }
 
-    // Dispatch action to update profile in Redux state
     dispatch({ type: PROFILE_UPDATE, payload: data.body });
   } catch (error) {
     dispatch({ type: PROFILE_UPDATE_FAIL, payload: error.message });

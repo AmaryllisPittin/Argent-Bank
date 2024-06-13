@@ -1,11 +1,22 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import User from "./pages/User";
-import Form from "./pages/Form"
+import Form from "./pages/Form";
+import React, { useEffect } from "react";
+import { useDispatch } from 'react-redux';
+import { userProfile } from './redux/actions';
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      dispatch(userProfile(token));
+    }
+  }, [dispatch]);
+
   return (
     <Router>
       <Routes>

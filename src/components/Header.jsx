@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle, faCog } from '@fortawesome/free-solid-svg-icons';
 import { NavLink, useNavigate } from "react-router-dom";
@@ -9,13 +8,7 @@ import Logo from '../img/argentBankLogo.png';
 const Header = () => {
     const dispatch = useDispatch();
     const userProfile = useSelector(state => state.userProfile);
-    const userLogin = useSelector(state => state.userLogin);
     const navigate = useNavigate();
-
-    useEffect(() => {
-        console.log('User Profile State:', userProfile);
-        console.log('User Login State:', userLogin);
-    }, [userProfile, userLogin]);
 
     const handleLogout = () => {
         dispatch(logout());
@@ -60,4 +53,5 @@ const Header = () => {
 };
 
 export default Header;
+
 
