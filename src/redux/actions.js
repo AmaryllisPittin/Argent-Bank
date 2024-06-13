@@ -76,7 +76,7 @@ export const userProfile = (token) => async (dispatch) => {
   }
 };
 
-export const updateProfile = (token, newFirstName, newLastName) => async (dispatch) => {
+export const updateProfile = (token, newFirstName, newLastName, newUsername) => async (dispatch) => {
   try {
     const response = await fetch('http://localhost:3001/api/v1/user/profile', {
       method: 'PUT',
@@ -84,7 +84,7 @@ export const updateProfile = (token, newFirstName, newLastName) => async (dispat
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ firstName: newFirstName, lastName: newLastName }),
+      body: JSON.stringify({ firstName: newFirstName, lastName: newLastName, userName: newUsername }),
     });
 
     const data = await response.json();
@@ -93,9 +93,10 @@ export const updateProfile = (token, newFirstName, newLastName) => async (dispat
       throw new Error(data.message || 'Échec de la mise à jour du profil');
     }
 
-    dispatch(userProfileUpdate(data.body));
+    // Dispatch action to update profile in Redux state
+    dispatch({ type: PROFILE_UPDATE, payload: data.body });
   } catch (error) {
-    dispatch(handleError(PROFILE_UPDATE_FAIL, error));
+    dispatch({ type: PROFILE_UPDATE_FAIL, payload: error.message });
   }
 };
 
