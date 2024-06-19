@@ -8,9 +8,11 @@ import Logo from '../img/argentBankLogo.png';
 const Header = () => {
     const dispatch = useDispatch();
     const userProfile = useSelector(state => state.userProfile);
+    const isConnected = useSelector(state => { 
+        return Boolean(state?.userLogin?.token)
+    }
+        );
     const navigate = useNavigate();
-
-    console.log(userProfile);
 
     const handleLogout = () => {
         const confirmed = window.confirm('Êtes-vous sûr de vouloir vous déconnecter ?');
@@ -31,7 +33,7 @@ const Header = () => {
                 />
                 <h1 className="sr-only">Argent Bank</h1>
             </NavLink>
-            {userProfile.success ? (
+            {isConnected ? (
                 <div>
                     <NavLink to="/user" className={`main-nav-item ${userProfile.userName ? 'custom-class' : ''}`}>
                         <FontAwesomeIcon icon={faUserCircle} className="main-nav-item__icon green-icon" />
