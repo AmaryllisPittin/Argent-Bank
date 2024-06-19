@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faCog } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../redux/actions';
@@ -10,10 +10,15 @@ const Header = () => {
     const userProfile = useSelector(state => state.userProfile);
     const navigate = useNavigate();
 
+    console.log(userProfile);
+
     const handleLogout = () => {
-        dispatch(logout());
-        localStorage.removeItem('token');
-        navigate('/');
+        const confirmed = window.confirm('Êtes-vous sûr de vouloir vous déconnecter ?');
+        if (confirmed) {
+            dispatch(logout());
+            localStorage.removeItem('token');
+            navigate('/');
+        }
     };
 
     return (
@@ -28,17 +33,14 @@ const Header = () => {
             </NavLink>
             {userProfile.success ? (
                 <div>
-                    <span className={`main-nav-item ${userProfile.userName ? 'custom-class' : ''}`}>
-                        {userProfile.userName}
+                    <NavLink to="/user" className={`main-nav-item ${userProfile.userName ? 'custom-class' : ''}`}>
                         <FontAwesomeIcon icon={faUserCircle} className="main-nav-item__icon green-icon" />
-                    </span>
-                    <NavLink to="/settings" className="main-nav-item">
-                        <FontAwesomeIcon icon={faCog} className="main-nav-item__icon green-icon" />
+                        {userProfile.userName}
                     </NavLink>
-                    <button onClick={handleLogout} className="main-nav-item">
-                        <FontAwesomeIcon icon={faUserCircle} className="main-nav-item__icon" />
+                    <span onClick={handleLogout} className="main-nav-item">
+                        <FontAwesomeIcon icon={faRightFromBracket} className="main-nav-item__icon" />
                         Sign Out
-                    </button>
+                    </span>
                 </div>
             ) : (
                 <div>
@@ -53,5 +55,4 @@ const Header = () => {
 };
 
 export default Header;
-
 

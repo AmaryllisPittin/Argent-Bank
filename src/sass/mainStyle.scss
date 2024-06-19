@@ -49,7 +49,6 @@ html,
 }
 
 .main-nav a.router-link-exact-active,
-.green-icon,
 .custom-class {
   color: #42b983;
 }
@@ -73,7 +72,8 @@ html {
   text-align: center;
 }
 
-.main-nav a {
+.main-nav a,
+.main-nav-item {
   font-weight: bold;
 }
 

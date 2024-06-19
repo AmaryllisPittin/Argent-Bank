@@ -37,12 +37,21 @@ const loginReducer = (state = initialState, action) => {
         error: action.payload,
         userName: action.payload.userName,
       };
-    case LOGOUT:
-      console.log('User logged out.');
-      return initialState;
+      case LOGOUT:
+        console.log('User logged out in reducer.');
+        return {
+            ...initialState,
+            userProfile: {
+                ...state.userProfile,
+                success: false,
+                firstName: null,
+                lastName: null,
+                userName: null,
+            },
+        };
     default:
-      return state;
-  }
+        return state;
+}
 };
 
 export default loginReducer;
