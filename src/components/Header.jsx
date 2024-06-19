@@ -34,18 +34,18 @@ const Header = () => {
                 <h1 className="sr-only">Argent Bank</h1>
             </NavLink>
             {isConnected ? (
-                <div>
+                <div className="profile-container">
                     <NavLink to="/user" className={`main-nav-item ${userProfile.userName ? 'custom-class' : ''}`}>
                         <FontAwesomeIcon icon={faUserCircle} className="main-nav-item__icon green-icon" />
                         {userProfile.userName}
                     </NavLink>
                     <span onClick={handleLogout} className="main-nav-item">
                         <FontAwesomeIcon icon={faRightFromBracket} className="main-nav-item__icon" />
-                        Sign Out
+                        <p className="sign-out">Sign Out</p>
                     </span>
                 </div>
             ) : (
-                <div>
+                <div className="profile-container sign-in">
                     <NavLink to="/sign-in" className="main-nav-item">
                         <FontAwesomeIcon icon={faUserCircle} className="main-nav-item__icon" />
                         Sign In

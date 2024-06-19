@@ -11,22 +11,20 @@ const Form = () => {
     const { firstName, lastName, userName } = useSelector((state) => state.userProfile);
     const { token } = useSelector((state) => state.userLogin);
 
-    const [newFirstname, setNewFirstname] = useState(firstName);
-    const [newLastname, setNewLastname] = useState(lastName);
     const [newUsername, setNewUsername] = useState(userName);
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        console.log('Submitting form with:', newUsername, newFirstname, newLastname);
+        console.log('Submitting form with:', newUsername);
         try {
-            await dispatch(updateProfile(token, newFirstname, newLastname, newUsername));
+            await dispatch(updateProfile(token, firstName, lastName, newUsername));
             console.log('Profile updated successfully');
         } catch (error) {
             console.error("Erreur lors de la mise à jour du profil :", error);
         }
     };
 
-    console.log('Current state:', { newUsername, newFirstname, newLastname });
+    console.log('Current state:', { newUsername });
 
     return (
         <div>
@@ -35,7 +33,7 @@ const Form = () => {
                 <h1>Modifier les informations de l'utilisateur</h1>
                 <form className="form" onSubmit={submitHandler}>
                     <div className="form__label-input">
-                        <label className="label">Pseudo</label>
+                        <label className="label">User Name:</label>
                         <input
                             className="input"
                             value={newUsername}
@@ -44,21 +42,19 @@ const Form = () => {
                         />
                     </div>
                     <div className="form__label-input">
-                        <label className="label">Prénom :</label>
+                        <label className="label">First Name:</label>
                         <input
-                            className="input"
-                            value={newFirstname}
-                            onChange={(e) => setNewFirstname(e.target.value)}
-                            required
+                            className="input name-input"
+                            value={firstName}
+                            readOnly
                         />
                     </div>
                     <div className="form__label-input">
-                        <label className="label">Nom :</label>
+                        <label className="label">Last Name:</label>
                         <input
-                            className="input"
-                            value={newLastname}
-                            onChange={(e) => setNewLastname(e.target.value)}
-                            required
+                            className="input name-input"
+                            value={lastName}
+                            readOnly
                         />
                     </div>
                     <div className="form-button-container">
@@ -73,6 +69,7 @@ const Form = () => {
             <Footer />
         </div>
     );
-}
+};
 
 export default Form;
+

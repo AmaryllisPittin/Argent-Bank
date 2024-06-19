@@ -1,3 +1,9 @@
+/*********RESPONSIVE**********/
+
+$mobile-breakpoint: 668px;
+
+/******************************/
+
 @mixin total-width {
     width:100%;
 }
@@ -88,6 +94,9 @@ body {
 
   .main-nav-item__icon {
     padding-right:0.5em;
+    @media (max-width: $mobile-breakpoint) {
+      margin-left: 15px;
+    }
   }
 
   .footer {
@@ -147,6 +156,7 @@ body {
 
   .form__label-input {
     margin-bottom:15px;
+    margin-left: 40px
   }
 
   .label {
@@ -215,4 +225,8 @@ body {
     .transaction-button {
       width: 200px;
     }
+  }
+
+  .sign-in {
+    width:120px;
   }
