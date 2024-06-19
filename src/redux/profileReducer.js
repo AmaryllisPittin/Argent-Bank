@@ -21,9 +21,9 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         success: true,
-        firstName: action.payload.body.firstName || state.firstName,
-        lastName: action.payload.body.lastName || state.lastName,
-        userName: action.payload.body.userName || state.userName,
+        firstName: action.payload.firstName || state.firstName,
+        lastName: action.payload.lastName || state.lastName,
+        userName: action.payload.userName || state.userName,
       };
 
     case PROFILE_UPDATE_FAIL:
