@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,21 +10,25 @@ const MainSignIn = () => {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const loading = useSelector(state => state.loading);
-  const error = useSelector(state => state.error);
+
+  // Accède aux états de userLogin dans le store
+  const { loading, error, token } = useSelector(state => state.userLogin);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email === '' || password === '') {
       alert('Veuillez remplir les deux champs pour vous connecter');
     } else {
-      dispatch(login(email, password)).then(() => {
-        if (!error) {
-          navigate('/user');
-        }
-      });
+      dispatch(login(email, password));
     }
   };
+
+  // Utilise useEffect pour surveiller les changements de token et d'erreur
+  useEffect(() => {
+    if (token) {
+      navigate('/user');
+    }
+  }, [token, navigate]);
 
   return (
     <main className="main bg-dark">

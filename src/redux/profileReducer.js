@@ -1,5 +1,3 @@
-// profileReducer.js
-
 import { PROFILE_SUCCESS, PROFILE_FAIL, PROFILE_RESET, PROFILE_UPDATE, PROFILE_UPDATE_FAIL } from './actionTypes';
 
 const initialState = {
