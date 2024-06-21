@@ -8,10 +8,26 @@ import { login } from '../redux/actions';
 const MainSignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { loading, error, token } = useSelector(state => state.userLogin);
+
+  useEffect(() => {
+    // Récupérer les informations du localStorage si présentes
+    const savedEmail = localStorage.getItem('savedEmail');
+    const savedPassword = localStorage.getItem('savedPassword');
+    const savedRememberMe = localStorage.getItem('savedRememberMe') === 'true';
+
+    if (savedEmail) {
+      setEmail(savedEmail);
+    }
+    if (savedPassword) {
+      setPassword(savedPassword);
+    }
+    setRememberMe(savedRememberMe);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,6 +35,15 @@ const MainSignIn = () => {
       alert('Veuillez remplir les deux champs pour vous connecter');
     } else {
       dispatch(login(email, password));
+      if (rememberMe) {
+        localStorage.setItem('savedEmail', email);
+        localStorage.setItem('savedPassword', password);
+        localStorage.setItem('savedRememberMe', rememberMe);
+      } else {
+        localStorage.removeItem('savedEmail');
+        localStorage.removeItem('savedPassword');
+        localStorage.removeItem('savedRememberMe');
+      }
     }
   };
 
@@ -53,7 +78,12 @@ const MainSignIn = () => {
             />
           </div>
           <div className="input-remember">
-            <input type="checkbox" id="remember-me" />
+            <input
+              type="checkbox"
+              id="remember-me"
+              checked={rememberMe}
+              onChange={(e) => setRememberMe(e.target.checked)}
+            />
             <label htmlFor="remember-me">Remember me</label>
           </div>
           <button type="submit" className="sign-in-button" disabled={loading}>
