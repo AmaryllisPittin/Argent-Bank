@@ -27,6 +27,8 @@ export const logout = () => ({
   type: LOGOUT,
 });
 
+/**Appel et gestion de la connexion utilisateur**/ 
+
 export const login = (email, password) => {
   return async (dispatch) => {
     dispatch(loginRequest());
@@ -44,7 +46,7 @@ export const login = (email, password) => {
       if (response.ok) {
         dispatch(loginSuccess(data));
         dispatch(userProfile(data.body.token));
-        localStorage.setItem('token', data.body.token);
+        sessionStorage.setItem('token', data.body.token);
       } else {
         dispatch(loginFailure(data.message));
       }
@@ -53,6 +55,8 @@ export const login = (email, password) => {
     }
   };
 };
+
+/*****Gestion du profil***/
 
 export const userProfile = (token) => async (dispatch) => {
   try {
@@ -103,6 +107,8 @@ export const userProfileUpdate = (data) => ({
   type: PROFILE_UPDATE,
   payload: data,
 });
+
+/**En cas d'erreurs**/
 
 const handleError = (type, error) => ({
   type,

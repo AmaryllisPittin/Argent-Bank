@@ -10,6 +10,8 @@ const initialState = {
   error: null,
 };
 
+/*********Gestion des états de connexion***********/
+
 const loginReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_REQUEST:
