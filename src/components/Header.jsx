@@ -8,20 +8,18 @@ import Logo from '../img/argentBankLogo.png';
 const Header = () => {
     const dispatch = useDispatch();
     const userProfile = useSelector(state => state.userProfile);
-    const isConnected = useSelector(state => { 
-        return Boolean(state?.userLogin?.token)
-    }
-        );
+    const isConnected = useSelector(state => Boolean(state.userLogin.token));
     const navigate = useNavigate();
 
     const handleLogout = () => {
         const confirmed = window.confirm('Êtes-vous sûr de vouloir vous déconnecter ?');
         if (confirmed) {
             dispatch(logout());
-            localStorage.removeItem('token');
             navigate('/');
         }
     };
+
+    console.log('isConnected:', isConnected);
 
     return (
         <nav className="main-nav">
@@ -57,4 +55,5 @@ const Header = () => {
 };
 
 export default Header;
+
 

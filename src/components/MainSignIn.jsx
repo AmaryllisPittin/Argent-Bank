@@ -11,7 +11,6 @@ const MainSignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // Accède aux états de userLogin dans le store
   const { loading, error, token } = useSelector(state => state.userLogin);
 
   const handleSubmit = (e) => {
@@ -23,7 +22,6 @@ const MainSignIn = () => {
     }
   };
 
-  // Utilise useEffect pour surveiller les changements de token et d'erreur
   useEffect(() => {
     if (token) {
       navigate('/user');
