@@ -6,6 +6,7 @@ import Form from "./pages/Form";
 import React, { useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import { userProfile } from './redux/actions';
+import ProtectedRoute from './redux/ProtectedRoute';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -22,8 +23,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/user" element={<User />} />
-        <Route path="/formulaire" element={<Form />} />
+        <Route path="/user" element={<ProtectedRoute element={User} />} />
+        <Route path="/formulaire" element={<ProtectedRoute element={Form} />} />
       </Routes>
     </Router>
   );
