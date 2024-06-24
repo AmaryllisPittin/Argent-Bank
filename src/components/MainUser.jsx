@@ -39,8 +39,4 @@ const MainUser = () => {
 
 export default MainUser;
 
-/********window.addEventListener('storage', function(e) {
-  //console.log(e.key, e.oldValue,e.newValue, e.url, e.storageArea);
-}); */
-
 

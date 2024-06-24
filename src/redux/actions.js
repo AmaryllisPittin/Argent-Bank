@@ -80,7 +80,7 @@ export const userProfile = (token) => async (dispatch) => {
   }
 };
 
-export const updateProfile = (token, newFirstName, newLastName, newUsername) => async (dispatch) => {
+export const updateProfile = (token, firstName, lastName, newUsername) => async (dispatch) => {
   try {
     const response = await fetch('http://localhost:3001/api/v1/user/profile', {
       method: 'PUT',
@@ -88,7 +88,7 @@ export const updateProfile = (token, newFirstName, newLastName, newUsername) => 
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ firstName: newFirstName, lastName: newLastName, userName: newUsername }),
+      body: JSON.stringify({ firstName, lastName, userName: newUsername }),
     });
 
     const data = await response.json();
