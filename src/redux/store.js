@@ -2,7 +2,7 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import loginReducer from './loginReducer';
 import profileReducer from './profileReducer';
 
-// Récupération du jeton: sessionStorage
+// Récupération du jeton: localStorage
 const token = sessionStorage.getItem('token');
 
 const initialState = {
