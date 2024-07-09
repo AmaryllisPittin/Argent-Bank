@@ -7,15 +7,14 @@ import AccountSection from "./AccountSection";
 const MainUser = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const token = useSelector((state) => state.userLogin.token);
+    const { firstName = '', lastName = '' } = useSelector((state) => state.userProfile);
 
     useEffect(() => {
-        const token = sessionStorage.getItem('token');
         if (token) {
             dispatch(userProfile(token));
         }
-    }, [dispatch]);
-
-    const { firstName = '', lastName = '' } = useSelector((state) => state.userProfile);
+    }, [dispatch, token]);
 
     const handleEditClick = () => {
         navigate('/formulaire');
@@ -38,5 +37,3 @@ const MainUser = () => {
 };
 
 export default MainUser;
-
-

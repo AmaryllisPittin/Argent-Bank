@@ -13,9 +13,9 @@ export const loginRequest = () => ({
   type: LOGIN_REQUEST,
 });
 
-export const loginSuccess = (data) => ({
+export const loginSuccess = (token) => ({
   type: LOGIN_SUCCESS,
-  payload: data,
+  payload: { body: { token } },
 });
 
 export const loginFailure = (error) => ({
@@ -27,11 +27,10 @@ export const logout = () => ({
   type: LOGOUT,
 });
 
-/**Appel et gestion de la connexion utilisateur**/ 
-
 export const login = (email, password) => {
   return async (dispatch) => {
     dispatch(loginRequest());
+
     try {
       const response = await fetch('http://localhost:3001/api/v1/user/login', {
         method: 'POST',
@@ -44,9 +43,9 @@ export const login = (email, password) => {
       const data = await response.json();
 
       if (response.ok) {
-        dispatch(loginSuccess(data));
-        dispatch(userProfile(data.body.token));
-        sessionStorage.setItem('token', data.body.token);
+        const token = data.body.token;  // S'assurer que la réponse contient bien `data.body.token`
+        dispatch(loginSuccess(token));
+        dispatch(userProfile(token));
       } else {
         dispatch(loginFailure(data.message));
       }
@@ -56,7 +55,7 @@ export const login = (email, password) => {
   };
 };
 
-/*****Gestion du profil***/
+//Gestion du profil
 
 export const userProfile = (token) => async (dispatch) => {
   try {
@@ -102,13 +101,6 @@ export const updateProfile = (token, firstName, lastName, newUsername) => async 
     dispatch({ type: PROFILE_UPDATE_FAIL, payload: error.message });
   }
 };
-
-export const userProfileUpdate = (data) => ({
-  type: PROFILE_UPDATE,
-  payload: data,
-});
-
-/**En cas d'erreurs**/
 
 const handleError = (type, error) => ({
   type,

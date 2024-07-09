@@ -15,16 +15,12 @@ const MainSignIn = () => {
   const { loading, error, token } = useSelector(state => state.userLogin);
 
   useEffect(() => {
-    // Récupérer les informations du localStorage si présentes
+    // Récupération des informations du localStorage si présentes
     const savedEmail = localStorage.getItem('savedEmail');
-    const savedPassword = localStorage.getItem('savedPassword');
     const savedRememberMe = localStorage.getItem('savedRememberMe') === 'true';
 
     if (savedEmail) {
       setEmail(savedEmail);
-    }
-    if (savedPassword) {
-      setPassword(savedPassword);
     }
     setRememberMe(savedRememberMe);
   }, []);
@@ -37,11 +33,9 @@ const MainSignIn = () => {
       dispatch(login(email, password));
       if (rememberMe) {
         localStorage.setItem('savedEmail', email);
-        localStorage.setItem('savedPassword', password);
         localStorage.setItem('savedRememberMe', rememberMe);
       } else {
         localStorage.removeItem('savedEmail');
-        localStorage.removeItem('savedPassword');
         localStorage.removeItem('savedRememberMe');
       }
     }

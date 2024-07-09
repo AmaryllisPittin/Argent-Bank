@@ -21,9 +21,7 @@ const loginReducer = (state = initialState, action) => {
         error: null,
       };
     case LOGIN_SUCCESS:
-      console.log('Login Success Payload:', action.payload);
       const { token } = action.payload.body;
-      sessionStorage.setItem('token', token);
       return {
         ...state,
         success: true,
@@ -40,8 +38,6 @@ const loginReducer = (state = initialState, action) => {
         userName: action.payload.userName,
       };
     case LOGOUT:
-      console.log('User logged out in reducer.');
-      sessionStorage.removeItem('token');
       return {
         ...initialState,
       };

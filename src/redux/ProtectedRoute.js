@@ -1,12 +1,12 @@
 // Protection des routes et accès aux pages
 import React from 'react';
-import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 
-const ProtectedRoute = ({ element: Component, ...rest }) => {
-  const isAuthenticated = useSelector(state => state.userLogin.success);
-
-  return isAuthenticated ? <Component {...rest} /> : <Navigate to="/sign-in" />;
+const ProtectedRoute = ({ children }) => {
+  const token = useSelector((state) => state.userLogin.token);
+  return token ? children : <Navigate to="/sign-in" />;
 };
 
 export default ProtectedRoute;
+

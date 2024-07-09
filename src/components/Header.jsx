@@ -19,8 +19,6 @@ const Header = () => {
         }
     };
 
-    console.log('isConnected:', isConnected);
-
     return (
         <nav className="main-nav">
             <NavLink to="/" className="main-nav-logo">

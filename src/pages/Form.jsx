@@ -15,16 +15,13 @@ const Form = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        console.log('Submitting form with:', newUsername);
+
         try {
             await dispatch(updateProfile(token, firstName, lastName, newUsername));
-            console.log('Profile updated successfully');
         } catch (error) {
             console.error("Erreur lors de la mise à jour du profil :", error);
         }
     };
-
-    console.log('Current state:', { newUsername });
 
     return (
         <div>
